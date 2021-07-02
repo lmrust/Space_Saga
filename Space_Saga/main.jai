@@ -1,6 +1,6 @@
 #import "Basic";
 #import "raylib-jai";
-#load "raylib-jai/raymath.jai";
+#load "raylib/raymath.jai";
 Math :: #import "math";
 #load "background.jai";
 #load "player.jai";
