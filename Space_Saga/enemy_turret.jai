@@ -31,6 +31,9 @@ simulate_enemy_turrets :: ()
     base_texture_offset : Vector2;
     gun_texture_offset : Vector2;
     scale: float32 = 0.2;
+    turret_death_count : int;
+    turret_death_count_win  : int = 2 ;
+
     // get enemy turret texture offset
     {
         first_frame: Texture2D = bullet_frames[0];
@@ -76,7 +79,9 @@ simulate_enemy_turrets :: ()
 
         DrawTextureEx(enemy_turret_base_texture, pos_base, 0, scale, WHITE);
         DrawTextureEx(enemy_turret_gun_texture, pos_gun, angle_degrees, scale, WHITE);
-        print("angle %\n", angle_degrees);
+
+        //Prints the angle between turret and player ship
+        //print("angle %\n", angle_degrees);
 
         //Enemy Movement
         //dt := GetFrameTime();

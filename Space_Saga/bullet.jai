@@ -58,7 +58,7 @@ spawn_enemy_turret_bullet :: (position: Vector2, inital_velocity: Vector2)
     b.radius = 10;
     b.birth = GetTime();
     b.team = Team.Enemy;
-    b.lifespan = 2.0;  //Life of bullet in seconds
+    b.lifespan = 3.0;  //Life of bullet in seconds
     b.damage = 25;
 
     array_add(*bullet_instances, b);

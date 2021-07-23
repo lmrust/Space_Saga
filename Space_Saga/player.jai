@@ -5,6 +5,19 @@
 
 init_player :: ()
 {
+    reset_player();
+    // Load texture texture to player
+    player.texture = LoadTexture("resources/player_texture_yellow.png");
+
+    //Load speed boost texture
+    player.texture_speedboost = LoadTexture("resources/Speed_Boost.png");
+
+    //Load Sheild texture
+    player.texture_shield = LoadTexture("resources/shield_texture.png");
+}
+
+reset_player :: ()
+{
     //set player alive to true.
     player.alive = true;
 
@@ -17,18 +30,10 @@ init_player :: ()
     player.last_shot_time = GetTime();
     player.rate_of_fire = 0.28;
 
-    // Load texture texture to player
-    player.texture = LoadTexture("resources/player_texture_yellow.png");
-
-    //Load speed boost texture
-    player.texture_speedboost = LoadTexture("resources/Speed_Boost.png");
-
-    //Load Sheild texture
-    player.texture_shield = LoadTexture("resources/shield_texture.png");
-
     player.radius = cast(float)(player.texture.width) / 2.5;
-    player.health = 100;
+    player.health = 200;
 }
+
 
 simulate_player :: ()
 {
@@ -72,14 +77,14 @@ simulate_player :: ()
 
         if is_powerup_active
         {
-            BULLET_VELOCITY :: Vector2. {0, -550};
+            BULLET_VELOCITY :: Vector2. {0, -700};
             spawn_player_bullet(player.pos,                     BULLET_VELOCITY);
             spawn_player_bullet(player.pos + Vector2.{-20,+20}, BULLET_VELOCITY); //bot left bullet
             spawn_player_bullet(player.pos + Vector2.{+20,+20}, BULLET_VELOCITY); // bot right bullet
         }
         else
         {
-            BULLET_VELOCITY :: Vector2. {0, -250};
+            BULLET_VELOCITY :: Vector2. {0, -700};
             spawn_player_bullet(player.pos, BULLET_VELOCITY );
         }
         player.last_shot_time = time;
@@ -146,8 +151,12 @@ damage_player :: (amount: int)
     {
         //play_player_death_sound();
         //Play_player_death_VFX();
-        print("YOU HAVE DIED!\n");
+        //print("YOU HAVE DIED!\n");
         player.alive = false;
+
+        //calculate player kill count
+        
+        change_game_state(GameState.Loose);
     }
 }
 
